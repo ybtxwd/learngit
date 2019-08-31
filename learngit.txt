@@ -1,0 +1,149 @@
+Git教程
+
+一.安装Git
+
+全局设置
+git config --global user.name "Your Name"
+git config --global user.email "email@qq.com"
+
+二.创建版本库
+
+第一步，创建空目录
+
+mkdir learngit #创建目录
+cd learngit
+pwd  #显示当前目录
+
+第二步，初始化
+
+git init
+ls -ah #显示隐藏目录
+touch readme.txt  #新建文件，ps：rz上传本地文件，删除rm
+vi readme.txt     #编辑文件  vi,vim
+cat readme.txt    #查看文件
+ps: i,a,o 插入,esc退出编辑，:wq 退出保存，:q! 强退不保存,:e! 放弃修改重新打开
+
+把文件提交到仓库
+
+第一步，
+git add readme.txt
+
+第二步
+git commit -m "wrote a readme file"  #提交加备注信息
+
+三.时光机穿梭
+
+1.git status  #查看仓库当前状态
+2.git diff readme.txt  #查看差异
+
+提交修改和提交新文件一样两步。
+
+1>.版本回退
+
+git log  #查看提交历史
+git log --pretty=oneline  #查看历史命令一行显示
+
+git reset --hard HEAD^  #回退到上一个版本
+git reset --hard HEAD^^  #回退到上上一个版本
+git reset --hard HEAD~100  #回退到上100个版本
+git reset --hard 1094a #回退到指定commit id 版本
+git reflog  #查看命令历史
+
+2>.工作区和暂存区
+
+3>.管理修改
+
+4>.撤销修改
+
+方法：
+
+1.git checkout -- readme.txt #让这个文件回到最近一次git commit或git add时的状态。
+#不加--就是切换分支命令
+
+2.git reset HEAD <file>  #可以把暂存区的修改撤销掉（unstage），重新放回工作区
+
+3.版本回退
+
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
+
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。
+
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库
+
+5>.删除文件
+
+1.git rm test.txt
+
+  git commit -m "remove test.txt"
+
+2.git checkout -- test.txt
+
+四.远程仓库（需要github账号）
+
+第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
+
+$ ssh-keygen -t rsa -C "youremail@example.com"
+
+第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：
+
+然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：
+
+1>.添加远程库
+
+1.创建新仓库
+2.本地仓库与之关联,以下两种命令都可以. 
+git remote add origin git@github.com:ybtxwd/learngit.git
+git remote add origin https://github.com/ybtxwd/learngit.git
+
+3.把本地库所有内容推送到远程库
+git push -u origin master
+
+由于远程库是空的，我们第一次推送master分支时，加上了-u参数，
+Git不但会把本地的master分支内容推送的远程新的master分支，
+还会把本地的master分支和远程的master分支关联起来，
+在以后的推送或者拉取时就可以简化命令。
+
+git push origin master #把本地修改推送到远程库
+
+小结：要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+
+
+2>.从远程库克隆
+
+git clone git@github.com:ybtxwd/gitskills.git   #快点
+git clone https://github.com/ybtxwd/gitskills.git
+
+五.分支管理
+
+1>.创建与合并分支
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
